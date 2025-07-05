@@ -14,7 +14,9 @@ const PORTFOLIO_CONFIG = {
             type: "image", // Options: "icon", "image", "initials"
             icon: "fas fa-user", // Font Awesome icon class
             image: "Photo.jpg", // Path to image if type is "image"
-            initials: "DS" // Update with your initials
+            initials: "DS", // Update with your initials
+            style: "square", // Options: "square", "circular", "portrait"
+            objectFit: "cover" // Options: "cover", "contain", "fill"
         }
     },
 

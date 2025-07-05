@@ -138,15 +138,24 @@ class PortfolioBuilder {
         }
 
         // Update hero avatar
+        const heroImageWrapper = document.querySelector('.hero-image');
         const heroImage = document.querySelector('.hero-image .image-placeholder');
-        if (heroImage) {
+        if (heroImage && heroImageWrapper) {
+            // Apply style class
+            if (this.config.personal.avatar.style === 'circular') {
+                heroImageWrapper.classList.add('circular');
+            } else if (this.config.personal.avatar.style === 'portrait') {
+                heroImage.classList.add('portrait-mode');
+            }
+            
             if (this.config.personal.avatar.type === 'icon') {
                 heroImage.innerHTML = `<i class="${this.config.personal.avatar.icon}"></i>`;
             } else if (this.config.personal.avatar.type === 'initials') {
                 heroImage.innerHTML = `<span style="font-size: 4rem; font-weight: 700;">${this.config.personal.avatar.initials}</span>`;
             } else if (this.config.personal.avatar.type === 'image' && this.config.personal.avatar.image) {
                 heroImage.style.background = 'var(--bg-card)';
-                heroImage.innerHTML = `<img src="${this.config.personal.avatar.image}" alt="${this.config.personal.name}">`;
+                const objectFit = this.config.personal.avatar.objectFit || 'cover';
+                heroImage.innerHTML = `<img src="${this.config.personal.avatar.image}" alt="${this.config.personal.name}" style="object-fit: ${objectFit};">`;
             }
         }
     }
