@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.production
+config.js
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build files
+dist/
+build/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Personal files
+DhruvSinghal*.pdf
+*.docx
+*.doc
+
+# Server files (not needed for static hosting)
+server.js
+server.py
+
+# Keep example files
+!config.example.js
+!.env.example
+# Local Netlify folder
+.netlify
