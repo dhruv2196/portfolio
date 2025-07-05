@@ -213,51 +213,72 @@ class PortfolioApp {
         submitBtn.disabled = true;
 
         try {
-            // Get EmailJS Configuration from config file
-            let EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, CONTACT_EMAIL;
-            
-            if (typeof CONFIG !== 'undefined') {
-                EMAILJS_SERVICE_ID = CONFIG.EMAILJS_SERVICE_ID;
-                EMAILJS_TEMPLATE_ID = CONFIG.EMAILJS_TEMPLATE_ID;
-                CONTACT_EMAIL = CONFIG.CONTACT_EMAIL || 'john.developer@email.com';
-            } else {
-                console.warn('Config file not found. Using default values.');
-                EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-                EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-                CONTACT_EMAIL = 'john.developer@email.com';
-            }
-            
-            // Check if EmailJS is loaded and credentials are set
-            if (typeof emailjs === 'undefined') {
-                throw new Error('EmailJS is not loaded. Please check your internet connection.');
-            }
-            
-            if (!EMAILJS_SERVICE_ID || EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID' || 
-                !EMAILJS_TEMPLATE_ID || EMAILJS_TEMPLATE_ID === 'YOUR_TEMPLATE_ID') {
-                console.warn('EmailJS credentials not configured. Using mailto fallback.');
-                // Fallback to mailto if EmailJS is not configured
-                const mailtoLink = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(formValues.subject)}&body=${encodeURIComponent(`From: ${formValues.name} (${formValues.email})\n\n${formValues.message}`)}`;
-                window.location.href = mailtoLink;
-                this.showNotification('Opening your email client...', 'info');
-            } else {
-                // Send email using EmailJS
-                const response = await emailjs.send(
-                    EMAILJS_SERVICE_ID,
-                    EMAILJS_TEMPLATE_ID,
-                    {
-                        from_name: formValues.name,
-                        from_email: formValues.email,
-                        subject: formValues.subject,
-                        message: formValues.message,
-                        to_email: CONTACT_EMAIL,
-                    }
-                );
+            // Check if we're on Netlify (has Netlify functions)
+            if (window.location.hostname.includes('netlify')) {
+                // Use Netlify Function
+                const response = await fetch('/.netlify/functions/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formValues)
+                });
+
+                const result = await response.json();
                 
-                console.log('EmailJS Response:', response);
+                if (response.ok) {
+                    this.showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+                    form.reset();
+                } else {
+                    throw new Error(result.error || 'Failed to send email');
+                }
+            } else {
+                // Use client-side EmailJS (for local development)
+                let EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, CONTACT_EMAIL;
                 
-                // Show success message
-                this.showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-                form.reset();
+                if (typeof CONFIG !== 'undefined') {
+                    EMAILJS_SERVICE_ID = CONFIG.EMAILJS_SERVICE_ID;
+                    EMAILJS_TEMPLATE_ID = CONFIG.EMAILJS_TEMPLATE_ID;
+                    CONTACT_EMAIL = CONFIG.CONTACT_EMAIL || 'dhruv.singhal96@gmail.com';
+                } else {
+                    console.warn('Config file not found. Using default values.');
+                    EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+                    EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+                    CONTACT_EMAIL = 'dhruv.singhal96@gmail.com';
+                }
+                
+                // Check if EmailJS is loaded and credentials are set
+                if (typeof emailjs === 'undefined') {
+                    throw new Error('EmailJS is not loaded. Please check your internet connection.');
+                }
+                
+                if (!EMAILJS_SERVICE_ID || EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID' || 
+                    !EMAILJS_TEMPLATE_ID || EMAILJS_TEMPLATE_ID === 'YOUR_TEMPLATE_ID') {
+                    console.warn('EmailJS credentials not configured. Using mailto fallback.');
+                    // Fallback to mailto if EmailJS is not configured
+                    const mailtoLink = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(formValues.subject)}&body=${encodeURIComponent(`From: ${formValues.name} (${formValues.email})\n\n${formValues.message}`)}`;
+                    window.location.href = mailtoLink;
+                    this.showNotification('Opening your email client...', 'info');
+                } else {
+                    // Send email using EmailJS
+                    const response = await emailjs.send(
+                        EMAILJS_SERVICE_ID,
+                        EMAILJS_TEMPLATE_ID,
+                        {
+                            from_name: formValues.name,
+                            from_email: formValues.email,
+                            subject: formValues.subject,
+                            message: formValues.message,
+                            to_email: CONTACT_EMAIL,
+                        }
+                    );
+                    
+                    console.log('EmailJS Response:', response);
+                    
+                    // Show success message
+                    this.showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+                    form.reset();
+                }
             }
             
         } catch (error) {

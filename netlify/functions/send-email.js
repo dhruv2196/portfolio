@@ -1,6 +1,4 @@
-// Netlify Function for sending emails
-// Place this file in netlify/functions/send-email.js
-
+// Netlify Function to handle email sending securely
 exports.handler = async (event, context) => {
   // Only allow POST requests
   if (event.httpMethod !== 'POST') {
@@ -10,85 +8,71 @@ exports.handler = async (event, context) => {
     };
   }
 
+  // Parse the request body
+  let data;
   try {
-    const { name, email, subject, message } = JSON.parse(event.body);
-
-    // Validate required fields
-    if (!name || !email || !subject || !message) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: 'Missing required fields' })
-      };
-    }
-
-    // Option 1: Using SendGrid (requires @sendgrid/mail package)
-    /*
-    const sgMail = require('@sendgrid/mail');
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-    const msg = {
-      to: process.env.TO_EMAIL,
-      from: process.env.FROM_EMAIL,
-      subject: `Portfolio Contact: ${subject}`,
-      text: `From: ${name} (${email})\n\n${message}`,
-      html: `
-        <h3>New Contact Form Submission</h3>
-        <p><strong>From:</strong> ${name} (${email})</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-      `
-    };
-
-    await sgMail.send(msg);
-    */
-
-    // Option 2: Using Nodemailer (requires nodemailer package)
-    /*
-    const nodemailer = require('nodemailer');
-
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT,
-      secure: true,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-      }
-    });
-
-    await transporter.sendMail({
-      from: `"${name}" <${process.env.FROM_EMAIL}>`,
-      to: process.env.TO_EMAIL,
-      replyTo: email,
-      subject: `Portfolio Contact: ${subject}`,
-      text: `From: ${name} (${email})\n\n${message}`,
-      html: `
-        <h3>New Contact Form Submission</h3>
-        <p><strong>From:</strong> ${name} (${email})</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-      `
-    });
-    */
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ 
-        success: true, 
-        message: 'Email sent successfully' 
-      })
-    };
-
+    data = JSON.parse(event.body);
   } catch (error) {
-    console.error('Email error:', error);
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: 'Invalid request body' })
+    };
+  }
+
+  // Get EmailJS credentials from environment variables
+  const EMAILJS_SERVICE_ID = process.env.EMAILJS_SERVICE_ID;
+  const EMAILJS_TEMPLATE_ID = process.env.EMAILJS_TEMPLATE_ID;
+  const EMAILJS_PUBLIC_KEY = process.env.EMAILJS_PUBLIC_KEY;
+  const EMAILJS_PRIVATE_KEY = process.env.EMAILJS_PRIVATE_KEY;
+
+  if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ 
-        error: 'Failed to send email',
-        details: error.message 
-      })
+      body: JSON.stringify({ error: 'Email service not configured' })
+    };
+  }
+
+  // Prepare EmailJS API request
+  const emailData = {
+    service_id: EMAILJS_SERVICE_ID,
+    template_id: EMAILJS_TEMPLATE_ID,
+    user_id: EMAILJS_PUBLIC_KEY,
+    accessToken: EMAILJS_PRIVATE_KEY,
+    template_params: {
+      from_name: data.name,
+      from_email: data.email,
+      subject: data.subject,
+      message: data.message,
+      to_email: process.env.CONTACT_EMAIL || 'dhruv.singhal96@gmail.com'
+    }
+  };
+
+  try {
+    // Send email using EmailJS API
+    const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(emailData)
+    });
+
+    if (response.ok) {
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ message: 'Email sent successfully!' })
+      };
+    } else {
+      const error = await response.text();
+      return {
+        statusCode: response.status,
+        body: JSON.stringify({ error: 'Failed to send email', details: error })
+      };
+    }
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'Failed to send email', details: error.message })
     };
   }
 };
