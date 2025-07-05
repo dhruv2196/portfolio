@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Floating Icons</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: #0a0a0a;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 50px;
+        }
+        .test-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: #141414;
+            border: 1px solid #27272a;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .icon-info {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Testing Floating Icons with Original Colors</h1>
+    <div class="test-container">
+        <div>
+            <div class="icon-box" style="color: #007396;">
+                <i class="fab fa-java"></i>
+            </div>
+            <div class="icon-info">Java<br>#007396</div>
+        </div>
+        <div>
+            <div class="icon-box" style="color: #6db33f;">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <div class="icon-info">Spring<br>#6db33f</div>
+        </div>
+        <div>
+            <div class="icon-box" style="color: #336791;">
+                <i class="fas fa-database"></i>
+            </div>
+            <div class="icon-info">Database<br>#336791</div>
+        </div>
+        <div>
+            <div class="icon-box" style="color: #FF9900;">
+                <i class="fab fa-aws"></i>
+            </div>
+            <div class="icon-info">AWS<br>#FF9900</div>
+        </div>
+        <div>
+            <div class="icon-box" style="color: #4285F4;">
+                <i class="fab fa-google"></i>
+            </div>
+            <div class="icon-info">Google<br>#4285F4</div>
+        </div>
+        <div>
+            <div class="icon-box" style="color: #181717;">
+                <i class="fab fa-github"></i>
+            </div>
+            <div class="icon-info">GitHub<br>#181717</div>
+        </div>
+    </div>
+    
+    <h2 style="margin-top: 50px;">Debug Info</h2>
+    <div id="debug"></div>
+    
+    <script src="portfolio-config.js"></script>
+    <script>
+        // Display the configuration
+        if (typeof PORTFOLIO_CONFIG !== 'undefined') {
+            document.getElementById('debug').innerHTML = '<pre>' + JSON.stringify(PORTFOLIO_CONFIG.hero.floatingIcons, null, 2) + '</pre>';
+        } else {
+            document.getElementById('debug').innerHTML = 'Configuration not loaded';
+        }
+    </script>
+</body>
+</html>

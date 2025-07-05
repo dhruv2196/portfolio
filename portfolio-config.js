@@ -5,35 +5,48 @@ const PORTFOLIO_CONFIG = {
     // Personal Information
     personal: {
         name: "Dhruv Singhal",
-        title: "Oracle certified Java Developer",
+        title: "Lead Software Engineer",
         email: "dhruv.singhal96@gmail.com",
         phone: "+919717081398",
-        location: "Pune, India",
-        lastUpdated: "24th September 2021",
+        location: "Noida, India",
+        lastUpdated: "4th July 2025",
         avatar: {
             type: "image", // Options: "icon", "image", "initials"
-            icon: "fas fa-user", // Font Awesome icon class
-            image: "Photo.jpg", // Path to image if type is "image"
-            initials: "DS", // Update with your initials
+            icon: "fas fa-user", // Font Awesome icon class (used when type is "icon")
+            image: "Photo.jpg", // Path to image (used when type is "image")
+            initials: "DS", // Your initials (used when type is "initials")
+            initialsBackground: "#6366f1", // Background color for initials (optional, defaults to accent color)
+            initialsColor: "#ffffff", // Text color for initials (optional, defaults to white)
             style: "square", // Options: "square", "circular", "portrait"
-            objectFit: "cover" // Options: "cover", "contain", "fill"
+            objectFit: "cover" // Options: "cover", "contain", "fill" (applies to image type only)
+        },
+        // Separate image for about section (optional)
+        aboutImage: {
+            enabled: true, // Set to true to use a different image in about section
+            type: "initials", // Options: "image", "initials" (can be different from main avatar)
+            image: "Photo.jpg", // Can be a different photo like "Photo-about.jpg"
+            initials: "DS", // Your initials (used when type is "initials")
+            initialsBackground: "#6366f1", // Background color for initials - Try gradient colors: "#8b5cf6" (purple), "#3b82f6" (blue), "#10b981" (green), "#f59e0b" (amber)
+            initialsColor: "#ffffff", // Text color for initials (optional)
+            style: "square", // Options: "square", "circular", "portrait"
+            objectFit: "contain" // Options: "cover", "contain", "fill" (applies to image type only)
         }
     },
 
     // Hero Section
     hero: {
         greeting: "Hello, I'm",
-        subtitle: "Oracle certified Java Developer",
+        subtitle: "Lead Software Engineer",
         highlightedWord: "Developer",
-        description: "With 3.5 years of experience as a Programmer Analyst at Infosys (previously Executive API at Mitel Corporation), I specialize in Data structures, Design patterns, Spring Boot & JPA with Hibernate.",
+        description: "With 7+ years of experience as a Lead Software Engineer at Ultimate Kronos Group(previously Programmer Analyst at Cerillion, Software Engineer at Mitel Corporation), I specialize in building E2E microservices, with good knowledge of Event Driven Architecture, Design patterns, Spring Boot & JPA, with Hibernate,  Data structures.",
         availability: {
             show: true,
             text: "Available for work"
         },
         stats: [
-            { value: "3.5", label: "Years Experience" },
+            { value: "7.5", label: "Years Experience" },
             { value: "200+", label: "Java Issues Fixed" },
-            { value: "2", label: "Major Projects" }
+            { value: "6", label: "Major Projects" }
         ],
         buttons: [
             {
@@ -49,10 +62,11 @@ const PORTFOLIO_CONFIG = {
             }
         ],
         floatingIcons: [
-            { icon: "fab fa-java", position: "icon-1" },
-            { icon: "fas fa-leaf", position: "icon-2" },
-            { icon: "fas fa-database", position: "icon-3" },
-            { icon: "fab fa-aws", position: "icon-4" }
+            { icon: "fab fa-java", position: "icon-1", color: "#007396" }, // Java official blue
+            { icon: "fas fa-leaf", position: "icon-2", color: "#6db33f" }, // Spring green
+            { icon: "fas fa-database", position: "icon-3", color: "#336791" }, // Database blue
+            // { icon: "fab fa-aws", position: "icon-4", color: "#FF9900" },  // AWS orange
+            { icon: "fab fa-google", position: "icon-5", color: "#4285F4" }  // Google Cloud bl
         ]
     },
 
@@ -62,7 +76,7 @@ const PORTFOLIO_CONFIG = {
         sectionTitle: "About Me",
         subtitle: "I'm Dhruv Singhal, an Oracle certified Java Developer based in Pune, India.",
         paragraphs: [
-            "With 3.5 years of experience as a Programmer Analyst at Infosys, I specialize in developing robust Java applications using Spring Boot, Hibernate, and REST APIs. My expertise lies in data structures, design patterns, and building scalable enterprise solutions.",
+            "With 7+ years of experience as a Lead Software Engineer at Ultimate Kronos Group(previously Programmer Analyst at Cerillion, Software Engineer at Mitel Corporation), I specialize in building E2E microservices, with good knowledge of Event Driven Architecture, Design patterns, Spring Boot & JPA, with Hibernate,  Data structures.",
             "I hold an OCP JAVA SE 11 DEVELOPER certification and have a strong educational background with a Post Graduation Diploma in Advanced Computing from CDAC Pune and a B.Tech in Computer Science from Noida International University."
         ],
         highlights: [
@@ -88,7 +102,7 @@ const PORTFOLIO_CONFIG = {
         timeline: [
             {
                 title: "PROGRAMMER ANALYST",
-                company: "CERIDIAN HCM",
+                company: "CERILLION PLC",
                 duration: "Sep 2019 - Present",
                 description: "Major responsibility in developing REST APIs related to Sales manager, Cash Drawers, Event Manager, CRM Administrator and other areas.",
                 achievements: [
@@ -250,6 +264,7 @@ const PORTFOLIO_CONFIG = {
                     { name: "Oracle Database", icon: "fas fa-database", level: 88 },
                     { name: "MySQL", icon: "fas fa-database", level: 85 },
                     { name: "AWS Cloud", icon: "fab fa-aws", level: 78 },
+                    { name: "Google Cloud Platform", icon: "fab fa-google", level: 75 },
                     { name: "Shell Scripting", icon: "fas fa-terminal", level: 75 }
                 ]
             },
@@ -326,8 +341,10 @@ const PORTFOLIO_CONFIG = {
         logo: {
             type: "initials", // Options: "text", "initials", "image"
             text: "Portfolio",
-            initials: "DS", // Update with your initials
-            image: "" // Path to logo image
+            initials: "DS", // Your initials (used when type is "initials")
+            initialsBackground: "transparent", // Background color for initials in nav (optional)
+            initialsColor: "inherit", // Text color for initials in nav (optional)
+            image: "" // Path to logo image (used when type is "image")
         },
         links: [
             { text: "Home", href: "#home" },

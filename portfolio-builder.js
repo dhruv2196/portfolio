@@ -130,11 +130,29 @@ class PortfolioBuilder {
         // Update floating icons
         const floatingElements = document.querySelector('.floating-elements');
         if (floatingElements) {
-            floatingElements.innerHTML = this.config.hero.floatingIcons.map(icon => `
-                <div class="floating-icon ${icon.position}">
-                    <i class="${icon.icon}"></i>
-                </div>
-            `).join('');
+            console.log('Updating floating icons:', this.config.hero.floatingIcons);
+            floatingElements.innerHTML = this.config.hero.floatingIcons.map(icon => {
+                console.log(`Creating icon: ${icon.icon} with color: ${icon.color}`);
+                return `
+                    <div class="floating-icon ${icon.position}" style="${icon.color ? `color: ${icon.color} !important;` : ''}">
+                        <i class="${icon.icon}" style="${icon.color ? `color: ${icon.color} !important;` : ''}"></i>
+                    </div>
+                `;
+            }).join('');
+            
+            // Force refresh the styles
+            setTimeout(() => {
+                document.querySelectorAll('.floating-icon').forEach((el, index) => {
+                    const iconConfig = this.config.hero.floatingIcons[index];
+                    if (iconConfig && iconConfig.color) {
+                        el.style.color = iconConfig.color;
+                        const iconElement = el.querySelector('i');
+                        if (iconElement) {
+                            iconElement.style.color = iconConfig.color;
+                        }
+                    }
+                });
+            }, 100);
         }
 
         // Update hero avatar
@@ -151,7 +169,64 @@ class PortfolioBuilder {
             if (this.config.personal.avatar.type === 'icon') {
                 heroImage.innerHTML = `<i class="${this.config.personal.avatar.icon}"></i>`;
             } else if (this.config.personal.avatar.type === 'initials') {
-                heroImage.innerHTML = `<span style="font-size: 4rem; font-weight: 700;">${this.config.personal.avatar.initials}</span>`;
+                // Apply custom colors if specified
+                const bgColor = this.config.personal.avatar.initialsBackground || 'var(--accent-primary)';
+                const textColor = this.config.personal.avatar.initialsColor || '#ffffff';
+                
+                // Create a gradient background for more appeal
+                const gradientBg = `linear-gradient(135deg, ${bgColor} 0%, ${bgColor}dd 100%)`;
+                
+                heroImage.style.background = gradientBg;
+                heroImage.style.color = textColor;
+                heroImage.style.display = 'flex';
+                heroImage.style.alignItems = 'center';
+                heroImage.style.justifyContent = 'center';
+                heroImage.style.position = 'relative';
+                heroImage.style.overflow = 'hidden';
+                
+                // Add inner shadow for depth
+                heroImage.style.boxShadow = 'inset 0 2px 4px rgba(0,0,0,0.1)';
+                
+                heroImage.innerHTML = `
+                    <div style="
+                        position: absolute;
+                        top: -50%;
+                        left: -50%;
+                        width: 200%;
+                        height: 200%;
+                        background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+                        transform: rotate(45deg);
+                        transition: all 0.6s;
+                        animation: shimmer 3s infinite;
+                    "></div>
+                    <span style="
+                        font-size: 4.5rem;
+                        font-weight: 800;
+                        letter-spacing: 0.05em;
+                        text-transform: uppercase;
+                        position: relative;
+                        z-index: 1;
+                        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                    ">${this.config.personal.avatar.initials}</span>
+                    <style>
+                        @keyframes shimmer {
+                            0% { transform: rotate(45deg) translateX(-100%); }
+                            100% { transform: rotate(45deg) translateX(100%); }
+                        }
+                    </style>
+                `;
+                
+                // Add hover effect
+                heroImage.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+                heroImage.onmouseover = function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.boxShadow = 'inset 0 2px 4px rgba(0,0,0,0.1), 0 10px 20px rgba(0,0,0,0.15)';
+                };
+                heroImage.onmouseout = function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = 'inset 0 2px 4px rgba(0,0,0,0.1)';
+                };
             } else if (this.config.personal.avatar.type === 'image' && this.config.personal.avatar.image) {
                 heroImage.style.background = 'var(--bg-card)';
                 const objectFit = this.config.personal.avatar.objectFit || 'cover';
@@ -203,15 +278,79 @@ class PortfolioBuilder {
         }
 
         // Update about image
+        const aboutImageWrapper = document.querySelector('.about-image');
         const aboutImagePlaceholder = document.querySelector('.about-image .image-placeholder');
-        if (aboutImagePlaceholder) {
-            if (this.config.personal.avatar.type === 'icon') {
-                aboutImagePlaceholder.innerHTML = `<i class="${this.config.personal.avatar.icon}"></i>`;
-            } else if (this.config.personal.avatar.type === 'initials') {
-                aboutImagePlaceholder.innerHTML = `<span style="font-size: 3rem; font-weight: 700;">${this.config.personal.avatar.initials}</span>`;
-            } else if (this.config.personal.avatar.type === 'image' && this.config.personal.avatar.image) {
+        if (aboutImagePlaceholder && aboutImageWrapper) {
+            // Check if separate about image is enabled
+            const useAboutImage = this.config.personal.aboutImage && this.config.personal.aboutImage.enabled;
+            const imageConfig = useAboutImage ? this.config.personal.aboutImage : this.config.personal.avatar;
+            
+            // Apply style class
+            if (imageConfig.style === 'circular') {
+                aboutImageWrapper.classList.add('circular');
+                aboutImagePlaceholder.classList.add('circular');
+            } else if (imageConfig.style === 'portrait') {
+                aboutImagePlaceholder.classList.add('portrait-mode');
+            }
+            
+            if (imageConfig.type === 'icon') {
+                aboutImagePlaceholder.innerHTML = `<i class="${imageConfig.icon}"></i>`;
+            } else if (imageConfig.type === 'initials') {
+                // Apply custom colors if specified
+                const bgColor = imageConfig.initialsBackground || 'var(--accent-primary)';
+                const textColor = imageConfig.initialsColor || '#ffffff';
+                
+                // Create a gradient background for more appeal
+                const gradientBg = `linear-gradient(135deg, ${bgColor} 0%, ${bgColor}dd 100%)`;
+                
+                aboutImagePlaceholder.style.background = gradientBg;
+                aboutImagePlaceholder.style.color = textColor;
+                aboutImagePlaceholder.style.display = 'flex';
+                aboutImagePlaceholder.style.alignItems = 'center';
+                aboutImagePlaceholder.style.justifyContent = 'center';
+                aboutImagePlaceholder.style.position = 'relative';
+                aboutImagePlaceholder.style.overflow = 'hidden';
+                
+                // Add inner shadow for depth
+                aboutImagePlaceholder.style.boxShadow = 'inset 0 2px 4px rgba(0,0,0,0.1)';
+                
+                aboutImagePlaceholder.innerHTML = `
+                    <div style="
+                        position: absolute;
+                        top: -50%;
+                        left: -50%;
+                        width: 200%;
+                        height: 200%;
+                        background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+                        transform: rotate(45deg);
+                        transition: all 0.6s;
+                    "></div>
+                    <span style="
+                        font-size: 3.5rem;
+                        font-weight: 800;
+                        letter-spacing: 0.05em;
+                        text-transform: uppercase;
+                        position: relative;
+                        z-index: 1;
+                        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                    ">${imageConfig.initials}</span>
+                `;
+                
+                // Add hover effect
+                aboutImagePlaceholder.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+                aboutImagePlaceholder.onmouseover = function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.boxShadow = 'inset 0 2px 4px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.1)';
+                };
+                aboutImagePlaceholder.onmouseout = function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = 'inset 0 2px 4px rgba(0,0,0,0.1)';
+                };
+            } else if (imageConfig.type === 'image' && imageConfig.image) {
                 aboutImagePlaceholder.style.background = 'var(--bg-card)';
-                aboutImagePlaceholder.innerHTML = `<img src="${this.config.personal.avatar.image}" alt="${this.config.personal.name}">`;
+                const objectFit = imageConfig.objectFit || 'cover';
+                aboutImagePlaceholder.innerHTML = `<img src="${imageConfig.image}" alt="${this.config.personal.name}" style="object-fit: ${objectFit};">`;
             }
         }
     }
