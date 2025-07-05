@@ -1,0 +1,14 @@
+name: Check Netlify Deploy
+
+on:
+  push:
+    branches: [ master, main ]
+
+jobs:
+  check-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for Netlify Deploy
+        run: |
+          echo "Netlify will auto-deploy this commit"
+          echo "Check status at: https://app.netlify.com/sites/YOUR-SITE-NAME/deploys"
