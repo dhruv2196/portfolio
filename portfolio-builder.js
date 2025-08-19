@@ -568,9 +568,12 @@ class PortfolioBuilder {
         // Update slider track with certificates
         const sliderTrack = document.getElementById('slider-track');
         if (sliderTrack && this.config.achievements.certificates) {
-            sliderTrack.innerHTML = this.config.achievements.certificates.map(cert => `
+            // Store certificates data globally for modal access
+            window.certificatesData = this.config.achievements.certificates;
+            
+            sliderTrack.innerHTML = this.config.achievements.certificates.map((cert, index) => `
                 <div class="achievement-slide">
-                    <div class="certificate-card">
+                    <div class="certificate-card" data-cert-index="${index}">
                         <div class="certificate-image">
                             <img src="${cert.image}" alt="${cert.title}" loading="lazy">
                         </div>
@@ -580,7 +583,7 @@ class PortfolioBuilder {
                             <p class="certificate-date">Issued: ${cert.date}</p>
                             ${cert.credentialId ? `<p class="certificate-credential">Credential ID: ${cert.credentialId}</p>` : ''}
                             ${cert.verificationUrl ? `
-                                <a href="${cert.verificationUrl}" target="_blank" class="certificate-verify-link">
+                                <a href="${cert.verificationUrl}" target="_blank" class="certificate-verify-link" onclick="event.stopPropagation();">
                                     <i class="fas fa-external-link-alt"></i> Verify Certificate
                                 </a>
                             ` : ''}
@@ -588,6 +591,22 @@ class PortfolioBuilder {
                     </div>
                 </div>
             `).join('');
+            
+            // Add click handlers to certificate cards
+            setTimeout(() => {
+                const certificateCards = document.querySelectorAll('.certificate-card');
+                certificateCards.forEach(card => {
+                    card.addEventListener('click', (e) => {
+                        // Don't open modal if clicking on verification link
+                        if (e.target.closest('.certificate-verify-link')) return;
+                        
+                        const certIndex = card.getAttribute('data-cert-index');
+                        if (certIndex !== null && window.certificatesData) {
+                            this.openCertificateModal(window.certificatesData[certIndex]);
+                        }
+                    });
+                });
+            }, 200);
             
             // Re-initialize the slider after updating content
             if (typeof initAchievementsSlider === 'function') {
@@ -707,6 +726,64 @@ class PortfolioBuilder {
                 `;
             }
         });
+    }
+
+    openCertificateModal(certificate) {
+        const modal = document.getElementById('certificate-modal');
+        const modalImage = document.getElementById('modal-image');
+        const modalTitle = document.getElementById('modal-title');
+        const modalIssuer = document.querySelector('#modal-issuer span:last-child');
+        const modalDate = document.querySelector('#modal-date span:last-child');
+        const modalCredential = document.getElementById('modal-credential');
+        const modalCredentialText = document.querySelector('#modal-credential span:last-child');
+        
+        if (modal && modalImage && modalTitle) {
+            // Set modal content
+            modalImage.src = certificate.image;
+            modalImage.alt = certificate.title;
+            modalTitle.textContent = certificate.title;
+            
+            if (modalIssuer) modalIssuer.textContent = certificate.issuer;
+            if (modalDate) modalDate.textContent = certificate.date;
+            
+            // Handle credential ID
+            if (certificate.credentialId && modalCredential && modalCredentialText) {
+                modalCredentialText.textContent = certificate.credentialId;
+                modalCredential.style.display = 'flex';
+            } else if (modalCredential) {
+                modalCredential.style.display = 'none';
+            }
+            
+            // Show modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Setup close handlers
+            const closeBtn = document.getElementById('modal-close');
+            const closeModal = () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            };
+            
+            if (closeBtn) {
+                closeBtn.onclick = closeModal;
+            }
+            
+            // Close on background click
+            modal.onclick = (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            };
+            
+            // Close on ESC key
+            document.addEventListener('keydown', function escHandler(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                    document.removeEventListener('keydown', escHandler);
+                }
+            });
+        }
     }
 
     applyTheme() {
