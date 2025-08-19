@@ -227,6 +227,42 @@ const PORTFOLIO_CONFIG = {
         ]
     },
 
+    // Achievements Section
+    achievements: {
+        sectionLabel: "Recognition & Accomplishments",
+        sectionTitle: "Achievements & Certificates",
+        autoPlay: true, // Enable/disable auto-play
+        autoPlayDelay: 5000, // Delay in milliseconds
+        certificates: [
+            {
+                title: "Gold Award for Leading Mulesoft Migration",
+                issuer: "UKG",
+                date: "Feb 2025",
+                image: "certs/gold.png", // Replace with actual certificate image path
+                credentialId: "",
+                verificationUrl: "" // Optional: Add verification URL if available
+            },
+            {
+                title: "Winner - Best Innovation in UKG HRSD - 48 Hours",
+                issuer: "UKG",
+                date: "July 2023",
+                image: "certs/first_48hours.png", // Replace with actual certificate image path
+                credentialId: "",
+                verificationUrl: ""
+            },
+            {
+                title: "Oracle Certified Professional - Java SE 11 Developer",
+                issuer: "Oracle",
+                date: "April 2021",
+                image: "certs/ocp_java_se_11.png", // Replace with actual certificate image path
+                credentialId: "",
+                verificationUrl: "https://catalog-education.oracle.com/pls/certview/sharebadge?id=3058E39E28370BBFA5E5A30A330B19877F043F846103B1B5577A44D9E0930A1F"
+            },
+            
+            // Add more certificates as needed
+        ]
+    },
+
     // Skills Section
     skills: {
         sectionLabel: "Technical Expertise",
@@ -353,6 +389,7 @@ const PORTFOLIO_CONFIG = {
             { text: "Education", href: "#education" },
             { text: "Projects", href: "#projects" },
             { text: "Skills", href: "#skills" },
+            { text: "Achievements", href: "#achievements" },
             { text: "Contact", href: "#contact" }
         ]
     },

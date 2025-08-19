@@ -23,6 +23,7 @@ class PortfolioBuilder {
         this.updateEducation();
         this.updateProjects();
         this.updateSkills();
+        this.updateAchievements();
         this.updateContact();
         this.updateFooter();
         this.updateSocialLinks();
@@ -550,6 +551,58 @@ class PortfolioBuilder {
             setTimeout(() => {
                 portfolio.setupSkillBars();
             }, 100);
+        }
+    }
+
+    updateAchievements() {
+        // Check if achievements section exists in config
+        if (!this.config.achievements) return;
+        
+        // Update section labels and titles
+        const achievementsLabel = document.querySelector('#achievements .section-label');
+        if (achievementsLabel) achievementsLabel.textContent = this.config.achievements.sectionLabel;
+        
+        const achievementsTitle = document.querySelector('#achievements .section-title');
+        if (achievementsTitle) achievementsTitle.textContent = this.config.achievements.sectionTitle;
+
+        // Update slider track with certificates
+        const sliderTrack = document.getElementById('slider-track');
+        if (sliderTrack && this.config.achievements.certificates) {
+            sliderTrack.innerHTML = this.config.achievements.certificates.map(cert => `
+                <div class="achievement-slide">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="${cert.image}" alt="${cert.title}" loading="lazy">
+                        </div>
+                        <div class="certificate-info">
+                            <h3>${cert.title}</h3>
+                            <p class="certificate-issuer">${cert.issuer}</p>
+                            <p class="certificate-date">Issued: ${cert.date}</p>
+                            ${cert.credentialId ? `<p class="certificate-credential">Credential ID: ${cert.credentialId}</p>` : ''}
+                            ${cert.verificationUrl ? `
+                                <a href="${cert.verificationUrl}" target="_blank" class="certificate-verify-link">
+                                    <i class="fas fa-external-link-alt"></i> Verify Certificate
+                                </a>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Re-initialize the slider after updating content
+            if (typeof initAchievementsSlider === 'function') {
+                // Update auto-play settings from config
+                const sliderContainer = document.querySelector('.achievements-slider');
+                if (sliderContainer) {
+                    sliderContainer.setAttribute('data-autoplay', this.config.achievements.autoPlay);
+                    sliderContainer.setAttribute('data-autoplay-delay', this.config.achievements.autoPlayDelay);
+                }
+                
+                // Re-initialize the slider
+                setTimeout(() => {
+                    initAchievementsSlider();
+                }, 100);
+            }
         }
     }
 

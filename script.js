@@ -644,8 +644,173 @@ PROJECTS
     }
 }
 
+// Achievements Slider Functionality
+function initAchievementsSlider() {
+    const sliderTrack = document.getElementById('slider-track');
+    const prevBtn = document.getElementById('slider-prev');
+    const nextBtn = document.getElementById('slider-next');
+    const indicatorsContainer = document.getElementById('slider-indicators');
+    
+    if (!sliderTrack || !prevBtn || !nextBtn) return;
+    
+    const slides = sliderTrack.querySelectorAll('.achievement-slide');
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+    
+    // Create indicators
+    function createIndicators() {
+        indicatorsContainer.innerHTML = '';
+        for (let i = 0; i < totalSlides; i++) {
+            const indicator = document.createElement('button');
+            indicator.className = 'slider-indicator';
+            indicator.setAttribute('aria-label', `Go to slide ${i + 1}`);
+            if (i === 0) indicator.classList.add('active');
+            
+            indicator.addEventListener('click', () => {
+                goToSlide(i);
+            });
+            
+            indicatorsContainer.appendChild(indicator);
+        }
+    }
+    
+    // Update slider position
+    function updateSlider() {
+        const slideWidth = 100; // 100% width per slide
+        sliderTrack.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+        
+        // Update indicators
+        const indicators = indicatorsContainer.querySelectorAll('.slider-indicator');
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentSlide);
+        });
+        
+        // Update button states
+        prevBtn.disabled = currentSlide === 0;
+        nextBtn.disabled = currentSlide === totalSlides - 1;
+    }
+    
+    // Go to specific slide
+    function goToSlide(slideIndex) {
+        currentSlide = Math.max(0, Math.min(slideIndex, totalSlides - 1));
+        updateSlider();
+    }
+    
+    // Next slide
+    function nextSlide() {
+        if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+            updateSlider();
+        }
+    }
+    
+    // Previous slide
+    function prevSlide() {
+        if (currentSlide > 0) {
+            currentSlide--;
+            updateSlider();
+        }
+    }
+    
+    // Auto-play functionality
+    let autoPlayInterval;
+    const autoPlayDelay = 5000; // 5 seconds
+    
+    function startAutoPlay() {
+        stopAutoPlay();
+        autoPlayInterval = setInterval(() => {
+            if (currentSlide < totalSlides - 1) {
+                nextSlide();
+            } else {
+                goToSlide(0); // Loop back to first slide
+            }
+        }, autoPlayDelay);
+    }
+    
+    function stopAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+        }
+    }
+    
+    // Touch/Swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    function handleTouchStart(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    }
+    
+    function handleTouchEnd(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swiped left
+                nextSlide();
+            } else {
+                // Swiped right
+                prevSlide();
+            }
+        }
+    }
+    
+    // Keyboard navigation
+    function handleKeyboard(e) {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+            stopAutoPlay();
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+            stopAutoPlay();
+        }
+    }
+    
+    // Event listeners
+    prevBtn.addEventListener('click', () => {
+        prevSlide();
+        stopAutoPlay();
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        nextSlide();
+        stopAutoPlay();
+    });
+    
+    // Touch events for mobile
+    sliderTrack.addEventListener('touchstart', handleTouchStart, { passive: true });
+    sliderTrack.addEventListener('touchend', handleTouchEnd, { passive: true });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', handleKeyboard);
+    
+    // Pause auto-play on hover
+    const sliderContainer = document.querySelector('.achievements-slider');
+    sliderContainer.addEventListener('mouseenter', stopAutoPlay);
+    sliderContainer.addEventListener('mouseleave', startAutoPlay);
+    
+    // Initialize
+    createIndicators();
+    updateSlider();
+    startAutoPlay();
+    
+    // Clean up on page unload
+    window.addEventListener('beforeunload', stopAutoPlay);
+}
+
 // Initialize the portfolio app
 const portfolio = new PortfolioApp();
+
+// Initialize achievements slider when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    initAchievementsSlider();
+});
 
 // Additional utility functions for enhanced functionality
 class PortfolioUtils {
