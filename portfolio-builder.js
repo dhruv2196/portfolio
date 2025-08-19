@@ -357,6 +357,9 @@ class PortfolioBuilder {
     }
 
     updateExperience() {
+        // Check if experience section exists in config
+        if (!this.config.experience) return;
+        
         // Update section labels and titles
         const expLabel = document.querySelector('#experience .section-label');
         if (expLabel) expLabel.textContent = this.config.experience.sectionLabel;
@@ -364,29 +367,49 @@ class PortfolioBuilder {
         const expTitle = document.querySelector('#experience .section-title');
         if (expTitle) expTitle.textContent = this.config.experience.sectionTitle;
 
-        // Update timeline
-        const timeline = document.querySelector('.timeline');
-        if (timeline) {
-            timeline.innerHTML = this.config.experience.timeline.map(job => `
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>${job.title}</h3>
-                            <span class="company">${job.company}</span>
-                            <span class="duration">${job.duration}</span>
+        // Update experience timeline with education-like format
+        const experienceTimeline = document.querySelector('.experience-timeline');
+        if (experienceTimeline) {
+            experienceTimeline.innerHTML = this.config.experience.timeline.map(job => `
+                <div class="experience-item">
+                    <div class="experience-icon">
+                        <i class="${job.icon || 'fas fa-briefcase'}"></i>
+                    </div>
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <h3 class="experience-title">${job.title}</h3>
+                            <span class="experience-company">${job.company}</span>
+                            <div class="experience-meta">
+                                <span class="experience-duration">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    ${job.duration}
+                                </span>
+                                ${job.location ? `
+                                    <span class="experience-location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        ${job.location}
+                                    </span>
+                                ` : ''}
+                            </div>
                         </div>
-                        <p class="role-description">${job.description}</p>
-                        <div class="achievements">
-                            ${job.achievements.map(achievement => 
-                                `<div class="achievement">${achievement}</div>`
-                            ).join('')}
-                        </div>
-                        <div class="tech-tags">
-                            ${job.technologies.map(tech => 
-                                `<span class="tech-tag">${tech}</span>`
-                            ).join('')}
-                        </div>
+                        <p class="experience-description">${job.description}</p>
+                        ${job.achievements && job.achievements.length > 0 ? `
+                            <div class="experience-achievements">
+                                ${job.achievements.map(achievement => 
+                                    `<div class="achievement-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>${achievement}</span>
+                                    </div>`
+                                ).join('')}
+                            </div>
+                        ` : ''}
+                        ${job.technologies && job.technologies.length > 0 ? `
+                            <div class="experience-technologies">
+                                ${job.technologies.map(tech => 
+                                    `<span class="tech-tag">${tech}</span>`
+                                ).join('')}
+                            </div>
+                        ` : ''}
                     </div>
                 </div>
             `).join('');

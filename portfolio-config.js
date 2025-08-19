@@ -38,7 +38,7 @@ const PORTFOLIO_CONFIG = {
         greeting: "Hello, I'm",
         subtitle: "Lead Software Engineer",
         highlightedWord: "Developer",
-        description: "With 7+ years of experience as a Lead Software Engineer at Ultimate Kronos Group(previously Programmer Analyst at Cerillion, Software Engineer at Mitel Corporation), I specialize in building E2E microservices, with good knowledge of Event Driven Architecture, Design patterns, Spring Boot & JPA, with Hibernate,  Data structures.",
+        description: "With 7.5 years of experience building distributed, scalable microservices with high availability and resiliency. Experienced in Event-Driven Architecture, CQRS, Java, GCP, Docker, Kubernetes, and Spring Boot, delivering enterprise-grade solutions across HRM, Telecom, and E-commerce domains.",
         availability: {
             show: true,
             text: "Available for work"
@@ -74,19 +74,19 @@ const PORTFOLIO_CONFIG = {
     about: {
         sectionLabel: "Get to know me",
         sectionTitle: "About Me",
-        subtitle: "I'm Dhruv Singhal, an Oracle certified Java Developer based in Pune, India.",
+        subtitle: "I'm Dhruv Singhal, a Lead Software Engineer based in Noida, India.",
         paragraphs: [
-            "With 7+ years of experience as a Lead Software Engineer at Ultimate Kronos Group(previously Programmer Analyst at Cerillion, Software Engineer at Mitel Corporation), I specialize in building E2E microservices, with good knowledge of Event Driven Architecture, Design patterns, Spring Boot & JPA, with Hibernate,  Data structures.",
-            "I hold an OCP JAVA SE 11 DEVELOPER certification and have a strong educational background with a Post Graduation Diploma in Advanced Computing from CDAC Pune and a B.Tech in Computer Science from Noida International University."
+            "With 7.5 years of experience building distributed, scalable microservices with high availability and resiliency. I specialize in Event-Driven Architecture, CQRS, and designing enterprise-grade solutions that serve 5000+ clients.",
+            "Currently at UKG, I've led critical platform migrations saving $2M+ annually, architected microservices with 99.9% uptime, and reduced deployment time from 7 days to under 1 hour through automation. I'm passionate about building resilient systems with comprehensive monitoring and implementing cutting-edge technologies like AI agents for configuration prediction."
         ],
         highlights: [
-            { icon: "fas fa-check-circle", text: "Core Java" },
-            { icon: "fas fa-check-circle", text: "Spring Boot" },
-            { icon: "fas fa-check-circle", text: "Hibernate" },
-            { icon: "fas fa-check-circle", text: "REST APIs" },
-            { icon: "fas fa-check-circle", text: "Oracle" },
-            { icon: "fas fa-check-circle", text: "MySQL" },
-            { icon: "fas fa-check-circle", text: "AWS" }
+            { icon: "fas fa-check-circle", text: "Microservices Architecture" },
+            { icon: "fas fa-check-circle", text: "Event-Driven Systems" },
+            { icon: "fas fa-check-circle", text: "Google Cloud Platform" },
+            { icon: "fas fa-check-circle", text: "Docker & Kubernetes" },
+            { icon: "fas fa-check-circle", text: "Spring Boot & Java" },
+            { icon: "fas fa-check-circle", text: "CQRS & Axon Framework" },
+            { icon: "fas fa-check-circle", text: "Auth0 & OAuth2.0" }
         ],
         resumeButton: {
             show: true,
@@ -101,29 +101,52 @@ const PORTFOLIO_CONFIG = {
         sectionTitle: "Work Experience",
         timeline: [
             {
+                title: "LEAD SOFTWARE ENGINEER",
+                company: "UKG - ULTIMATE KRONOS GROUP",
+                duration: "Nov 2021 - Present",
+                location: "Noida",
+                icon: "fas fa-code",
+                description: "Leading Integration Platform team, architecting distributed microservices with 99.9% uptime using Event-Driven Architecture.",
+                achievements: [
+                    "Led team delivering 3 critical projects, managing development and successful delivery",
+                    "Spearheaded Integration platform migration from MuleSoft to Boomi, achieving $2M+ annual savings and 40% performance improvement",
+                    "Designed resilient microservices with circuit breakers, retry mechanisms, and failover strategies serving 5000+ enterprise clients",
+                    "Implemented comprehensive monitoring with custom metrics, alerts, and dashboards in Grafana",
+                    "Built configuration-driven Angular/NgRx workflow interface with Auth0-based authentication for secure multi-tenant access",
+                    "Developed automated multi-tenant provisioning, reducing deployment time from 7 days to <1 hour",
+                    "Deployed containerized microservices on GCP with scaling using GKE",
+                    "Currently developing AI agents using Google ADK for configuration prediction and metadata generation"
+                ],
+                technologies: ["Java", "Spring Boot", "GCP", "Docker", "Kubernetes", "Angular", "NgRx", "Auth0", "Grafana", "RabbitMQ", "MongoDB", "CQRS", "Axon"]
+            },
+            {
                 title: "PROGRAMMER ANALYST",
                 company: "CERILLION PLC",
-                duration: "Sep 2019 - Present",
-                description: "Major responsibility in developing REST APIs related to Sales manager, Cash Drawers, Event Manager, CRM Administrator and other areas.",
+                duration: "Sep 2019 - Nov 2021",
+                location: "Pune",
+                icon: "fas fa-laptop-code",
+                description: "Developed high-performance REST APIs for CRM Plus platform serving telecom clients.",
                 achievements: [
-                    "Fixed 200+ Java issues related to Charging Systems, Sales manager, CRM Administrator",
-                    "Single point responsibility in developing API catalogue and making code changes",
-                    "Implemented a logger to log time-based server logs using log4j",
-                    "Implemented encoding algorithm in Convergent charging system",
-                    "Handled each issue related to encoding-decoding and special characters"
+                    "Developed REST APIs for Sales Manager, Event Manager, and CRM Administrator modules",
+                    "Enhanced Charging Systems with optimized encoding algorithms",
+                    "Single-handedly developed comprehensive API catalogue",
+                    "Resolved complex encoding-decoding and special character issues",
+                    "Improved features related to Charging Systems and Sales manager"
                 ],
-                technologies: ["Java", "Spring Boot", "REST APIs", "Log4j", "Oracle", "MySQL"]
+                technologies: ["Java", "Spring Boot", "REST APIs", "Oracle", "MySQL", "Log4j"]
             },
             {
                 title: "GRADUATE ENGINEER",
                 company: "MITEL CORPORATION",
                 duration: "Mar 2019 - Sep 2019",
-                description: "Understanding business requirements of the product and enhancement requests by clients.",
+                location: "Bangalore",
+                icon: "fas fa-phone-volume",
+                description: "Developed REST APIs and enhanced VOIP features for MiVoice Connect platform.",
                 achievements: [
-                    "Developing REST APIs for web-based client (MiVoice Connect client)",
-                    "Attending meetings with customer to resolve issues through various configurations",
-                    "Developing and testing call features like VOIP calling, Call transfer, conference, Hunt groups",
-                    "Installation of complete solution like switches, servers based on requirements"
+                    "Developed REST APIs for web-based MiVoice Connect client",
+                    "Enhanced VOIP calling, call transfer, conference, and hunt group features",
+                    "Worked on work groups and other telephony features",
+                    "Resolved customer issues through various configurations"
                 ],
                 technologies: ["Java", "REST APIs", "VOIP", "Spring"]
             },
@@ -131,11 +154,14 @@ const PORTFOLIO_CONFIG = {
                 title: "SOFTWARE DEVELOPER",
                 company: "MUST IT SERVICES PVT LTD",
                 duration: "Aug 2017 - July 2018",
-                description: "Developed REST APIs using Spring & Hibernate and fixed project bugs.",
+                location: "Noida",
+                icon: "fas fa-shopping-cart",
+                description: "Full-stack development for 1800Flowers e-commerce platform.",
                 achievements: [
-                    "Built a back-end database service in Java and implemented a front end UI",
-                    "Developed the endpoints for the client as well as internal APIs",
-                    "Documented the services using Swagger/OpenAPI"
+                    "Built REST APIs using Spring & Hibernate",
+                    "Developed back-end database services in Java",
+                    "Implemented front-end UI to support future changes",
+                    "Fixed critical project bugs under tight deadlines"
                 ],
                 technologies: ["Java", "Spring", "Hibernate", "REST APIs", "Swagger"]
             }
@@ -271,70 +297,72 @@ const PORTFOLIO_CONFIG = {
             {
                 title: "Core Programming & Frameworks",
                 skills: [
-                    { name: "Core Java", icon: "fab fa-java", level: 95 },
-                    { name: "Spring Framework", icon: "fas fa-leaf", level: 90 },
+                    { name: "Java", icon: "fab fa-java", level: 95 },
                     { name: "Spring Boot", icon: "fas fa-rocket", level: 92 },
-                    { name: "Hibernate/JPA", icon: "fas fa-database", level: 88 },
-                    { name: "JDBC", icon: "fas fa-plug", level: 85 },
-                    { name: "REST Web Services", icon: "fas fa-code", level: 92 },
-                    { name: "Maven", icon: "fas fa-box", level: 82 },
-                    { name: "JAVA EE", icon: "fab fa-java", level: 80 }
+                    { name: "Microservices", icon: "fas fa-cubes", level: 90 },
+                    { name: "Event-Driven Architecture", icon: "fas fa-project-diagram", level: 88 },
+                    { name: "CQRS", icon: "fas fa-code-branch", level: 85 },
+                    { name: "Axon Framework", icon: "fas fa-cogs", level: 82 },
+                    { name: "Hibernate", icon: "fas fa-database", level: 88 },
+                    { name: "Circuit Breakers", icon: "fas fa-shield-alt", level: 85 }
                 ]
             },
             {
-                title: "Web Technologies & APIs",
+                title: "Cloud & DevOps",
                 skills: [
-                    { name: "RESTful APIs", icon: "fas fa-exchange-alt", level: 92 },
-                    { name: "HTML/CSS", icon: "fab fa-html5", level: 80 },
-                    { name: "TypeScript", icon: "fas fa-code", level: 75 },
-                    { name: "YAML", icon: "fas fa-file-code", level: 78 },
-                    { name: "Swagger/OpenAPI", icon: "fas fa-book", level: 85 },
-                    { name: "Socket Programming", icon: "fas fa-network-wired", level: 70 },
-                    { name: "RMI API", icon: "fas fa-share-alt", level: 72 },
-                    { name: "Log4j", icon: "fas fa-file-alt", level: 80 }
+                    { name: "Google Cloud Platform", icon: "fab fa-google", level: 88 },
+                    { name: "Docker", icon: "fab fa-docker", level: 85 },
+                    { name: "Kubernetes", icon: "fas fa-dharmachakra", level: 82 },
+                    { name: "GKE", icon: "fab fa-google", level: 80 },
+                    { name: "CI/CD", icon: "fas fa-infinity", level: 85 },
+                    { name: "GitHub Actions", icon: "fab fa-github", level: 82 },
+                    { name: "Ansible", icon: "fas fa-terminal", level: 75 },
+                    { name: "Prometheus", icon: "fas fa-chart-line", level: 78 }
                 ]
             },
             {
-                title: "Databases & Cloud",
+                title: "Databases & Messaging",
                 skills: [
-                    { name: "Oracle Database", icon: "fas fa-database", level: 88 },
+                    { name: "MongoDB", icon: "fas fa-leaf", level: 85 },
+                    { name: "SQL", icon: "fas fa-database", level: 88 },
+                    { name: "RabbitMQ", icon: "fas fa-envelope", level: 82 },
+                    { name: "Oracle Database", icon: "fas fa-database", level: 85 },
                     { name: "MySQL", icon: "fas fa-database", level: 85 },
-                    { name: "AWS Cloud", icon: "fab fa-aws", level: 78 },
-                    { name: "Google Cloud Platform", icon: "fab fa-google", level: 75 },
-                    { name: "Shell Scripting", icon: "fas fa-terminal", level: 75 }
+                    { name: "MongoDB Compass", icon: "fas fa-compass", level: 80 }
                 ]
             },
             {
-                title: "Development Tools",
+                title: "Frontend & Web Technologies",
                 skills: [
-                    { name: "Postman", icon: "fas fa-paper-plane", level: 90 },
-                    { name: "Git", icon: "fab fa-git-alt", level: 88 },
-                    { name: "GitHub", icon: "fab fa-github", level: 88 },
-                    { name: "Perforce", icon: "fas fa-code-branch", level: 78 },
-                    { name: "VS Code", icon: "fas fa-code", level: 85 },
-                    { name: "IntelliJ IDEA", icon: "fas fa-laptop-code", level: 82 }
+                    { name: "TypeScript", icon: "fas fa-code", level: 78 },
+                    { name: "Angular", icon: "fab fa-angular", level: 75 },
+                    { name: "NgRx", icon: "fas fa-layer-group", level: 72 },
+                    { name: "RESTful APIs", icon: "fas fa-exchange-alt", level: 92 },
+                    { name: "Auth0", icon: "fas fa-lock", level: 80 },
+                    { name: "OAuth2.0", icon: "fas fa-key", level: 82 },
+                    { name: "YAML", icon: "fas fa-file-code", level: 80 }
                 ]
             },
             {
-                title: "DevOps & Infrastructure",
+                title: "Monitoring & Tools",
                 skills: [
-                    { name: "Apache Tomcat", icon: "fas fa-server", level: 80 },
-                    { name: "VMWare", icon: "fas fa-server", level: 75 },
+                    { name: "Grafana", icon: "fas fa-chart-area", level: 85 },
+                    { name: "Git", icon: "fab fa-git-alt", level: 90 },
+                    { name: "IntelliJ IDEA", icon: "fas fa-laptop-code", level: 88 },
                     { name: "Jira", icon: "fab fa-jira", level: 85 },
-                    { name: "Trello", icon: "fab fa-trello", level: 80 },
-                    { name: "FileZilla", icon: "fas fa-upload", level: 78 },
-                    { name: "Putty", icon: "fas fa-terminal", level: 82 }
+                    { name: "VMWare", icon: "fas fa-server", level: 75 },
+                    { name: "Tomcat", icon: "fas fa-server", level: 80 }
                 ]
             },
             {
-                title: "Concepts & Methodologies",
+                title: "Emerging Technologies",
                 skills: [
-                    { name: "Data Structures", icon: "fas fa-sitemap", level: 90 },
-                    { name: "Design Patterns", icon: "fas fa-project-diagram", level: 88 },
-                    { name: "Microservices", icon: "fas fa-cubes", level: 82 },
-                    { name: "Agile/Scrum", icon: "fas fa-sync-alt", level: 85 },
-                    { name: "API Design", icon: "fas fa-cogs", level: 87 },
-                    { name: "Problem Solving", icon: "fas fa-lightbulb", level: 92 }
+                    { name: "Generative AI", icon: "fas fa-brain", level: 70 },
+                    { name: "Google ADK", icon: "fab fa-google", level: 68 },
+                    { name: "Python", icon: "fab fa-python", level: 72 },
+                    { name: "High Availability Systems", icon: "fas fa-network-wired", level: 88 },
+                    { name: "Distributed Systems", icon: "fas fa-sitemap", level: 85 },
+                    { name: "Data Structures", icon: "fas fa-project-diagram", level: 90 }
                 ]
             }
         ],
@@ -387,9 +415,9 @@ const PORTFOLIO_CONFIG = {
             { text: "About", href: "#about" },
             { text: "Experience", href: "#experience" },
             { text: "Education", href: "#education" },
-            { text: "Projects", href: "#projects" },
             { text: "Skills", href: "#skills" },
             { text: "Achievements", href: "#achievements" },
+            { text: "Projects", href: "#projects" },
             { text: "Contact", href: "#contact" }
         ]
     },

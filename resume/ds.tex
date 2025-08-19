@@ -1,0 +1,426 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Modified Deedy - One Page Two Column Resume
+% % LaTeX Template
+% % Version 1.0 (07/04/2020)
+% % 
+% % Author
+% % Apurv Mishra(https://apurvmishra.xyz)
+% % Repository
+% % https://github.com/apurvmishra99/Modified-Deedy-Resume
+% % Original author of Deedy Resume:
+% % Debarghya Das (http://debarghyadas.com)
+% % His repository:
+% % https://github.com/deedydas/Deedy-Resume
+% %
+% %
+
+% %
+% % IMPORTANT: THIS TEMPLATE NEEDS TO BE COMPILED WITH XeLaTeX
+% %
+% % This template uses several fonts not included with Windows/Linux by
+% % default. If you get compilation errors saying a font is missing, find the line
+% % on which the font is used and either change it to a font included with your
+% % operating system or comment the line out to use the default font.
+% % 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % 
+% % TODO:
+% % 1. Integrate biber/bibtex for article citation under publications.
+% % 2. Figure out a smoother way for the document to flow onto the next page.
+% % 3. Add styling information for a "Projects/Hacks" section.
+% % 4. Add location/address information
+% % 
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % Known Issues:
+% % 1. Overflows onto second page if any column's contents are more than the
+% % vertical limit
+% %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \documentclass[]{deedy-resume-openfont}
+% \usepackage{fancyhdr}
+% \usepackage[utf8]{inputenc}
+% \usepackage{eurosym}
+ 
+% \pagestyle{fancy}
+% \fancyhf{}
+ 
+% \begin{document}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% %     LAST UPDATED DATE
+% %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % \lastupdated
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% %     TITLE NAME
+% %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \namesection{Dhruv}{Singhal}{ \urlstyle{same}
+% \href{mailto:dhruv.singhal96@gmail.com}{\bf dhruv.singhal96@gmail.com} | \bf +919717081398 
+% | \urlstyle{same}\href{https://linkedin.com/in/dhruvsinghal96}{\bf Linkedin} 
+% | \urlstyle{same}\href{https://github.com/dhruv2196}{\bf Github} | \urlstyle{same}\href{https://dhruv-singhal.netlify.app}{\bf About me} }
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% %     COLUMN ONE
+% %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{minipage}[t]{0.66\textwidth} 
+
+% \section{SUMMARY}
+% \vspace{\topsep}
+% \begin{tightemize}
+%     \item \textbf{Lead Software Engineer} offering 7.5 years of experience in designing 
+%     and \\ developing microservices.
+    
+%     \item Proficient in Java, GCP, Docker, Kubernetes, Grafana, and Spring Boot, with a strong focus on delivering scalable, high-performance solutions.
+    
+%     \item Experienced in working across diverse domains, including Telecom, \\ E-commerce, 
+%     and HRM.
+    
+%     \item Strong problem-solving skills with deep understanding of \textbf{data structures} 
+%     and algorithms.
+% \end{tightemize}
+% % \textbullet{} Strong programming skills in designing and implementation of applications using web-based technologies like {\bf Spring Boot \& JPA with Hibernate} \\
+% % \textbullet{} Strong debugging skills and experience working in Test driven environment.
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %     EXPERIENCE
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \section{Experience}
+% \runsubsection{UKG - Ultimate Kronos Group}
+% \descript{| Lead Software Engineer}
+% \location{{\bf Integration Platform} | Nov \textbf{2021 } – Present | Noida}
+% %\subsection{Project - {\descript{CRM Plus}}}
+% \vspace{\topsep} % Hacky fix for awkward extra vertical space
+% \begin{tightemize}
+% \item Led a team as Lead Software Engineer, managing the development and successful delivery of 3 key projects.
+% \item Led critical Integration platform migration from MuleSoft to Boomi, resulting in \$2M+ annual cost savings and 40 performance improvement.
+% \item Designed and developed microservices for Integration Platform using Domain-Driven Design and Event Driven Architecture, serving 5000+ enterprise clients.
+% \item Worked on developing a dynamic, configuration-driven guided workflow interface for UKG Dimensions using Angular and NgRx state management, enabling flexible UI customization through configuration. 
+% \item Designed and built microservices to orchestrate and automate multi tenant provisioning and reduce time to live from 7 days to less than 1 hour.
+% % \item Implemented google secret manager for integration platform to enhance security of sensitive data.
+% \item Deployed and managed microservices on Google Cloud Platform (GCP), uptime improved by 60\%.
+% % \item Won 5 48-hours events in 12 quarters and got to work on customer ideas in Aspire 2023 with 3rd position and received 2nd position in 2024.
+% % \item Submitted an idea for patent to streamline the storage of employee credentials in a way so that they could be fetched by any recruiter globally using blockchain.
+% \end{tightemize}
+% \sectionsep
+
+% \runsubsection{Cerillion PLC}
+% \descript{| Programmer Analyst}
+% \location{{\bf CRM Plus} | Sep \textbf{2019 } – Present | Pune}
+% %\subsection{Project - {\descript{CRM Plus}}}
+% \vspace{\topsep} % Hacky fix for awkward extra vertical space
+% \begin{tightemize}
+% \item Major responsibility in developing REST APIs related to Sales manager, Cash Drawers, Event Manager, CRM Administrator and other areas.
+% \item Worked on improving features related to Charging Systems, Sales manager, CRM Administrator and others.
+% \item Single point responsibility in developing API catalogue.
+% \item Solved improvement jiras under tight deadlines with high efficiency.
+% \item Implemented encoding algorithm in Convergent charging system. Handled each issue related to encoding-decoding, and special characters.
+% \end{tightemize}
+% \sectionsep
+
+% \runsubsection{Mitel Corporation}
+% \descript{| Graduate Engineer}
+% \location{{\bf MiVoice Connect} | Mar \textbf{2019 } – Sep \textbf{2019} | Bangalore}
+% \begin{tightemize}
+% \item Developed REST APIs for web-based client (MiVoice Connect client).
+% % \item Attending meetings with customer to resolve the issue through various configurations. 
+% \item Worked on enhancing different call features like VOIP calling, Call transfer, conference, Hunt groups, work groups etc. 
+% % \item Installation of the complete solution like switches, servers based on the requirements to replicate and resolve the issue. 
+% \end{tightemize}
+% \sectionsep
+
+% \runsubsection{Must IT Services Pvt Ltd}
+% \descript{| Software Developer}
+% \location{{\bf 1800Flowers} | Aug \textbf{2017 } - July \textbf{2018 } | Noida}
+% \begin{tightemize}
+% \item Developed REST APIs using Spring \& Hibernate and fixed project bugs.
+% \item Built a back-end database service in Java and implemented a front-end UI to support future changes. 
+% % \item Documented the services using Swagger/OpenAPI.
+% \end{tightemize}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %     CERTIFICATIONS
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % \section{Certifications}
+% % \descript{OCP Java SE 11 Developer(1ZO-819-J)} 
+% % \sectionsep
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %     PROJECTS
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% % \section{Projects}
+% % \runsubsection{HASHNOW CDE}
+% % \descript{| Java EE, Springboot, REST APIs, AWS Cloud}
+% % \begin{tightemize}
+% % \item The idea of this project represents the courier service management system. 
+% % \item The system is being used for day to day activities such as booking a courier, profess data of customers and maintain courier details and many other things.
+% % \end{tightemize}
+% % \sectionsep
+
+
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% %     COLUMN TWO
+% %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \end{minipage}%
+% \hfill
+% \begin{minipage}[t]{0.33\textwidth} 
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %     SKILLS
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \section{Skills}
+% \subsection{Programming}
+% \textbullet{} Java \textbullet{} Spring boot \textbullet{} Microservices \\ 
+% \textbullet{} Google Cloud \textbullet{} CQRS \textbullet{} Axon \\ \textbullet{} RabbitMQ  \textbullet{} MongoDB  
+% \textbullet{} SQL \\ \textbullet{} Hibernate  
+% % \location{\textbf{Familiar:}}
+% \textbullet{} Typescript \textbullet{} Angular NGRX \textbullet{}
+% YAML \textbullet{} Python \textbullet{} Ansible \\ \textbullet{} Github actions \textbullet{} Docker \textbullet{} Kubernetes \\
+% \textbullet{} Generative AI
+% \vspace{\topsep}
+% \subsection{VCS \& Other Tools}
+% \textbullet{} Git \textbullet{} VMWare \textbullet{} Jira \textbullet{} FileZilla \\ \textbullet{} IntelliJ \textbullet{} Eclipse
+% \textbullet{} Putty \textbullet{} Tomcat \\ \textbullet{} SQL Server Management Studio \\ \textbullet{} MongoDB Compass
+% \sectionsep
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %     EDUCATION
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \section{Education} 
+% \subsection{CDAC Pune}
+% \descript{Post Graduation Diploma in Advanced Computing}
+% \location{August \textbf{2018 } - \textbf{Feb 2019} | Pune}
+% \textbf{74\% - Grade A}
+% \vspace{\topsep}
+% \subsection{Noida International University}
+% \descript{Bachelor of Technology in Computer Science}
+% \location{August \textbf{2013 } - \textbf{May 2017} | Noida}
+% \textbf{6.29 CGPA}
+% \vspace{\topsep}
+% \subsection{Modern School(10-12)}
+% \descript{Science with PCM}
+% \location{May \textbf{2010 } - \textbf{April 2013} | Faridabad}
+% \sectionsep
+% % \sectionsep
+% % \sectionsep
+% %--
+% %\section{EXTRA-CURRICULAR}
+% %\textbullet{} Played cricket for U-14, U-16 DDCA. \\
+% %\textbullet{} Organised Innovation day 2019 in Mitel Corporation. \\
+% %\textbullet{} Played athletics under-16, under-19 Faridabad in 100m, 200m. \\
+% %\textbullet{} Rewarded as module topper for Java \& Advanced Java %technologies in CDAC. \\
+% %\textbullet{} Like to travel and explore new places. \\
+% \section{AWARDS} 
+% \sectionsep
+
+% \textbullet{} {\textbf{Gold Award} - Led integration platform migration and delivered it in less than 6 months with no impact in production to save over \$2M+ annually} \\
+% % \textbullet{} {Won \textbf{Gold} award in UKG for scoring highest innovation points in a year.} \\
+% \textbullet{} {\textbf{Bronze Award} - Critical production issue resolution (UKG 2022) } \\
+% \textbullet{} {\textbf{5x Hackathon Winner} - 48-hour innovation challenges with more than \$2000 rewards at UKG and got nomination for Aspire event for back to back years.} \\
+% \textbullet{} \textbf{2nd Position} - Aspire 2024 Customer Innovation Event \\
+% \textbullet{} \textbf{3rd Position} - Aspire 2023 Customer Innovation Event \\
+% % \item \descript {Won Bronze award for resolving a critical production issue.}
+% % \textbullet{} \text{} {Secured 2nd position in Aspire event for solving customer idea.}
+
+
+% \sectionsep
+
+
+% \end{minipage}%
+% \end{document}  
+% \documentclass[]{article}
+
+
+
+\documentclass[]{deedy-resume-openfont}
+\usepackage{fancyhdr}
+\usepackage[utf8]{inputenc}
+\usepackage{eurosym}
+\pagestyle{fancy}
+\fancyhf{}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% LAST UPDATED DATE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \lastupdated
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% TITLE NAME
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\namesection{Dhruv}{Singhal}{ \urlstyle{same}
+\href{mailto:dhruv.singhal96@gmail.com}{\bf dhruv.singhal96@gmail.com} | \bf +919717081398
+| \urlstyle{same}\href{https://linkedin.com/in/dhruvsinghal96}{\bf Linkedin}
+| \urlstyle{same}\href{https://github.com/dhruv2196}{\bf Github} | \urlstyle{same}\href{https://dhruv-singhal.netlify.app}{\bf About me} }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% COLUMN ONE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{minipage}[t]{0.66\textwidth}
+
+\section{SUMMARY}
+\vspace{\topsep}
+\begin{tightemize}
+\item \textbf{Lead Software Engineer} with 7.5 years building distributed, scalable microservices with high availability and resiliency.
+\item Good experience in Event-Driven Architecture, CQRS, Java, GCP, Docker, Kubernetes, monitoring/alerting with Grafana, and Spring Boot.
+\item Experienced across HRM, Telecom, and E-commerce domains, delivering enterprise-grade solutions.
+\item Implemented Auth0-based authentication system using OAuth2.0 for secure multi-tenant access.
+\item Strong problem-solving skills with deep understanding of \textbf{data structures} and algorithms.
+\end{tightemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% EXPERIENCE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Experience}
+\runsubsection{UKG - Ultimate Kronos Group}
+\descript{| Lead Software Engineer}
+\location{{\bf Integration Platform} | Nov \textbf{2021 } – Present | Noida}
+\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\begin{tightemize}
+\item Led team delivering 3 critical projects, architecting distributed microservices with 99.9\% uptime using Event-Driven Architecture.
+\item Spearheaded Integration platform migration from MuleSoft to Boomi, achieving \$2M+ annual savings and 40\% performance improvement.
+\item Designed resilient microservices with circuit breakers, retry mechanisms, and failover strategies serving 5000+ enterprise clients.
+\item Implemented comprehensive monitoring with custom metrics, alerts, and dashboards in Grafana for proactive incident management.
+\item Built configuration-driven Angular/NgRx workflow interface and implemented Auth0-based authentication system for secure multi-tenant access in Integration Platform.
+\item Developed automated multi-tenant provisioning, reducing deployment time from 7 days to <1 hour.
+\item Deployed containerized microservices on GCP with scaling using GKE, improving system reliability.
+\item Currently working on developing AI agents using Google ADK for configuration predication and metadata generation.
+\end{tightemize}
+\sectionsep
+
+\runsubsection{Cerillion PLC}
+\descript{| Programmer Analyst}
+\location{{\bf CRM Plus} | Sep \textbf{2019 } – Nov \textbf{2021} | Pune}
+\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\begin{tightemize}
+\item Developed high-performance REST APIs for Sales Manager, Event Manager, and CRM Administrator modules.
+\item Enhanced Charging Systems with optimized encoding algorithms, resolving critical character encoding issues.
+\item Single-handedly developed comprehensive API catalogue and resolved complex issues under tight deadlines.
+\end{tightemize}
+\sectionsep
+
+\runsubsection{Mitel Corporation}
+\descript{| Graduate Engineer}
+\location{{\bf MiVoice Connect} | Mar \textbf{2019 } – Sep \textbf{2019} | Bangalore}
+\begin{tightemize}
+\item Developed REST APIs for MiVoice Connect client and enhanced VOIP calling, call transfer, and conference features.
+\end{tightemize}
+\sectionsep
+
+\runsubsection{Must IT Services Pvt Ltd}
+\descript{| Software Developer}
+\location{{\bf 1800Flowers} | Aug \textbf{2017 } - July \textbf{2018 } | Noida}
+\begin{tightemize}
+\item Built REST APIs using Spring/Hibernate and developed full-stack features with Java backend and UI frontend.
+\end{tightemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% COLUMN TWO
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.33\textwidth}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SKILLS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Skills}
+\subsection{Programming}
+\textbullet{} Java \textbullet{} Spring Boot \textbullet{} Microservices \\
+\textbullet{} Event-Driven Architecture \textbullet{} CQRS \\
+\textbullet{} Distributed Systems \textbullet{} High Availability \\
+\textbullet{} Google Cloud \textbullet{} Axon Framework \\
+\textbullet{} RabbitMQ \textbullet{} MongoDB \textbullet{} SQL \\
+\textbullet{} Hibernate \textbullet{} Circuit Breakers \\
+\textbullet{} Monitoring/Alerting \textbullet{} Grafana \\
+\textbullet{} Typescript \textbullet{} Angular NGRX \\
+\textbullet{} Docker \textbullet{} Kubernetes \\
+\textbullet{} CI/CD \textbullet{} Github Actions \\
+\textbullet{} Python \textbullet{} Ansible \textbullet{} Generative AI
+
+\vspace{\topsep}
+\subsection{VCS \& Other Tools}
+\textbullet{} Git \textbullet{} VMWare \textbullet{} Jira \\
+\textbullet{} IntelliJ \textbullet{} Eclipse \textbullet{} Tomcat \\
+\textbullet{} SQL Server Management Studio \\
+\textbullet{} MongoDB Compass \textbullet{} Prometheus
+
+\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% EDUCATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Education}
+\subsection{CDAC Pune}
+\descript{Post Graduation Diploma in Advanced Computing}
+\location{August \textbf{2018 } - \textbf{Feb 2019} | Pune}
+\textbf{74\% - Grade A}
+\vspace{\topsep}
+
+\subsection{Noida International University}
+\descript{Bachelor of Technology in Computer Science}
+\location{August \textbf{2013 } - \textbf{May 2017} | Noida}
+\textbf{6.29 CGPA}
+\vspace{\topsep}
+
+\subsection{Modern School(10-12)}
+\descript{Science with PCM}
+\location{May \textbf{2010 } - \textbf{April 2013} | Faridabad}
+\sectionsep
+
+\section{AWARDS}
+\sectionsep
+\textbullet{} {\textbf{Gold Award} - Led platform migration saving \$2M+ annually with zero production impact} \\
+\textbullet{} {\textbf{Bronze Award} - Critical production issue resolution (2022)} \\
+\textbullet{} {\textbf{5x Hackathon Winner} - 48-hour challenges, \$2000+ rewards} \\
+\textbullet{} \textbf{2nd Position} - Aspire 2024 Customer Innovation \\
+\textbullet{} \textbf{3rd Position} - Aspire 2023 Customer Innovation \\
+
+\sectionsep
+
+\end{minipage}%
+\end{document}
+
+\documentclass[]{article}
